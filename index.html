@@ -15,48 +15,47 @@
             font-family: 'Inter', sans-serif;
         }
 
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 300px;
-            max-height: 400px;
-        }
-
-        @media (min-width: 768px) {
-            .chart-container {
-                height: 350px;
-            }
-        }
-
-        /* Custom gradient for the title */
         .gradient-text {
             background-image: linear-gradient(to right, #FFD166, #FF6B6B);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
-            color: transparent;
         }
-        
-        /* Animation classes */
+
         .animate-on-scroll {
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-            will-change: opacity, transform;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
         }
 
         .animate-on-scroll.is-visible {
             opacity: 1;
             transform: translateY(0);
         }
+
+        .fact-panel {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out;
+        }
+
+        .fact-panel.active {
+            max-height: 500px;
+        }
+
+        .source-badge {
+            background-color: #FFD166;
+            color: #0A1929;
+            font-size: 0.75rem;
+            padding: 0.15rem 0.4rem;
+            border-radius: 0.25rem;
+            margin-left: 0.3rem;
+        }
     </style>
 </head>
 
 <body class="bg-[#0A1929] text-gray-100">
 
+    <!-- HEADER -->
     <header class="text-center py-12 px-4 animate-on-scroll">
         <h1 class="text-4xl md:text-6xl font-black gradient-text tracking-tight">A Tale of Two Crises</h1>
         <p class="text-xl md:text-2xl mt-2 text-[#06D6A0]">Ice and Water Under Threat in India</p>
@@ -64,381 +63,212 @@
 
     <main class="container mx-auto px-4 md:px-8">
 
-        <section id="ladakh" class="py-12">
-            <div class="text-center mb-12 animate-on-scroll">
-                <h2 class="text-3xl md:text-5xl font-bold text-white">The Cryosphere in Crisis: Ladakh's Melting Glaciers</h2>
-                <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-400">The Himalayan glaciers, often called Asia's "water towers," are retreating at an alarming rate. Ladakh, a cold desert region, is on the front lines, facing dire consequences for its water security and ecological stability.</p>
+        <!-- SECTION A: Ladakh -->
+        <section id="ladakh" class="py-12 space-y-8">
+            <div class="text-center mb-8 animate-on-scroll">
+                <h2 class="text-3xl md:text-5xl font-bold">Ladakh's Melting Glaciers</h2>
+                <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-400">
+                    The Himalayan glaciers — Asia’s “water towers” — are shrinking fast. Ladakh’s Parkachik Glacier is now retreating faster than ever, putting agriculture and water security on the edge.
+                </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-center">
+            <!-- Key Data -->
+            <ul class="space-y-4 max-w-3xl mx-auto">
+                <li class="bg-[#183952] p-4 rounded-lg animate-on-scroll">
+                    Retreat speed jumped from <strong>2 m/year</strong> (1971–1999) to <strong>20 m/year</strong> (2015–2021) — a 10× acceleration 
+                    <span class="source-badge">Wadia Institute, 2022</span>.
+                </li>
+                <li class="bg-[#183952] p-4 rounded-lg animate-on-scroll">
+                    That’s like losing the length of <strong>two school buses</strong> of ice every year.
+                </li>
+                <li class="bg-[#183952] p-4 rounded-lg animate-on-scroll">
+                    Black carbon deposits from diesel and biomass burning lower the glacier’s <em>albedo</em> (reflectivity), making it absorb more heat.
+                </li>
+            </ul>
 
-                <div class="bg-[#183952] rounded-lg shadow-xl p-6 text-center animate-on-scroll">
-                    <p class="text-6xl font-black text-[#FF6B6B]">10x</p>
-                    <p class="mt-2 text-xl font-bold">Faster Retreat</p>
-                    <p class="text-gray-400 mt-1">The retreat rate of the Parkachik glacier has accelerated tenfold from an average of 2m/year (1971-99) to 20m/year (2015-21). This data is from a 2022 study by the Wadia Institute of Himalayan Geology.</p>
+            <!-- Glacier Chart -->
+            <div class="bg-[#183952] p-6 rounded-lg animate-on-scroll">
+                <h3 class="text-2xl font-bold text-center text-[#FFD166] mb-4">Glacier Retreat Rate</h3>
+                <div class="h-72">
+                    <canvas id="glacierRetreatChart"></canvas>
                 </div>
-
-                <div class="bg-[#183952] rounded-lg shadow-xl p-6 md:col-span-2 lg:col-span-2 animate-on-scroll">
-                   <h3 class="text-2xl font-bold text-center mb-4 text-[#FFD166]">Accelerating Glacier Retreat</h3>
-                   <p class="text-center text-gray-400 mb-4">The rate of ice loss from the Parkachik Glacier shows a dramatic increase in recent decades, highlighting the urgent impact of climate change.</p>
-                    <div class="chart-container h-64 md:h-80">
-                        <canvas id="glacierRetreatChart"></canvas>
-                    </div>
-                </div>
-
             </div>
 
-            <div class="mt-12 animate-on-scroll">
-                <h3 class="text-2xl font-bold text-center mb-6 text-white">Factors Contributing to Accelerated Melting</h3>
-                <div class="flex flex-col md:flex-row justify-center items-center gap-4 text-center">
-                    <div class="bg-[#118AB2] p-4 rounded-lg shadow-lg">
-                        <p class="text-2xl">🌡️</p>
-                        <p class="font-bold">Atmospheric Warming</p>
-                    </div>
-                    <div class="text-2xl font-bold text-[#06D6A0]">➔</div>
-                    <div class="bg-[#118AB2] p-4 rounded-lg shadow-lg">
-                        <p class="text-2xl">⚫</p>
-                        <p class="font-bold">Black Carbon Deposits</p>
-                    </div>
-                   <div class="text-2xl font-bold text-[#06D6A0]">➔</div>
-                    <div class="bg-[#118AB2] p-4 rounded-lg shadow-lg">
-                        <p class="text-2xl">💨</p>
-                        <p class="font-bold">Pollution from Vehicles</p>
-                    </div>
-                    <div class="text-2xl font-bold text-[#FF6B6B]">➔</div>
-                   <div class="bg-[#FF6B6B] p-4 rounded-lg shadow-lg">
-                        <p class="text-2xl">💧</p>
-                        <p class="font-bold">Glacier Mass Loss</p>
-                    </div>
-                </div>
-                <p class="mt-4 text-center max-w-3xl mx-auto text-gray-400">Black carbon particles, a result of vehicle emissions and biomass burning, settle on the glacier surface. This dramatically lowers the ice's **albedo** (its ability to reflect sunlight), causing it to absorb more solar energy and melt faster.</p>
-            </div>
+            <!-- Risks -->
+            <ul class="space-y-4 max-w-3xl mx-auto mt-8">
+                <li class="bg-[#FF6B6B]/20 p-4 rounded-lg animate-on-scroll">
+                    Rapid melt forms unstable <em>proglacial lakes</em> — Parkachik could form up to <strong>3 new lakes</strong>, increasing GLOF (Glacial Lake Outburst Flood) risk.
+                </li>
+                <li class="bg-[#118AB2]/20 p-4 rounded-lg animate-on-scroll">
+                    Ladakh gets up to <strong>85%</strong> of its water from glacial melt — reduced flow means agriculture collapse and drinking water scarcity.
+                </li>
+            </ul>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12 animate-on-scroll">
-                <div class="bg-[#183952] rounded-lg shadow-xl p-6">
-                    <h3 class="text-2xl font-bold text-center mb-4 text-[#FFD166]">The Looming Threat of GLOFs</h3>
-                    <p class="text-gray-400 text-center">Rapid melting creates unstable **proglacial lakes** behind moraine dams. A breach can cause a Glacial Lake Outburst Flood (GLOF), a catastrophic event threatening downstream communities. A recent analysis estimates the Parkachik glacier alone could form <span class="font-bold text-white text-xl">3 new lakes</span>, significantly increasing this risk.</p>
-                </div>
-                <div class="bg-[#183952] rounded-lg shadow-xl p-6">
-                    <h3 class="text-2xl font-bold text-center mb-4 text-[#FFD166]">Water Security at Risk</h3>
-                    <p class="text-center text-gray-400 mb-4">Ladakh's agriculture and drinking water are heavily dependent on glacial melt. As these frozen reservoirs shrink, the region faces a future of severe water scarcity.</p>
-                    <div class="chart-container h-48 md:h-56">
-                        <canvas id="waterDependencyChart"></canvas>
-                    </div>
+            <div class="bg-[#183952] p-6 rounded-lg animate-on-scroll">
+                <h3 class="text-2xl font-bold text-center text-[#06D6A0] mb-4">Water Dependency</h3>
+                <div class="h-64">
+                    <canvas id="waterDependencyChart"></canvas>
                 </div>
             </div>
         </section>
 
         <hr class="border-white/20 my-12">
 
-        <section id="ghats" class="py-12">
-            <div class="text-center mb-12 animate-on-scroll">
-                <h2 class="text-3xl md:text-5xl font-bold text-white">The Lifeline is Choking: Karnataka's Polluted Ghats</h2>
-                <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-400">The Western Ghats, a UNESCO World Heritage site and a global biodiversity hotspot, are facing a severe pollution crisis. The rivers that originate here, lifelines for millions, are being contaminated by a variety of human activities.</p>
+        <!-- SECTION B: Western Ghats -->
+        <section id="ghats" class="py-12 space-y-8">
+            <div class="text-center mb-8 animate-on-scroll">
+                <h2 class="text-3xl md:text-5xl font-bold">Karnataka's Polluted Western Ghats</h2>
+                <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-400">
+                    The Western Ghats — a UNESCO heritage site — are facing toxic threats from pollution, mining, and deforestation, choking rivers like the Nethravathi and Sharavathi.
+                </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                <div class="bg-[#183952] rounded-lg shadow-xl p-6 animate-on-scroll">
-                    <h3 class="text-2xl font-bold text-center mb-4 text-[#FFD166]">Major Sources of River Pollution</h3>
-                    <p class="text-center text-gray-400 mb-4">A combination of factors contributes to the degradation of the pristine rivers of the Western Ghats.</p>
-                    <div class="chart-container h-80">
-                        <canvas id="pollutionSourcesChart"></canvas>
-                    </div>
-                </div>
-                <div class="bg-[#183952] rounded-lg shadow-xl p-6 animate-on-scroll">
-                    <h3 class="text-2xl font-bold text-center mb-4 text-[#FFD166]">The Invisible Threat: Microplastics</h3>
-                    <div class="text-center">
-                        <p class="text-6xl">🔬</p>
-                        <p class="mt-4 text-gray-400">Recent studies from institutions like the Indian Institute of Science have confirmed the presence of microplastic fragments, fibers, and foams in rivers like the Nethravathi and Sharavathi. These tiny particles pose a significant risk to freshwater ecosystems and can enter the human food chain through **bioaccumulation**, with long-term consequences for health and the environment.</p>
-                    </div>
+            <!-- Quick Facts -->
+            <ul class="space-y-4 max-w-3xl mx-auto">
+                <li class="bg-[#183952] p-4 rounded-lg animate-on-scroll">
+                    Microplastics in Nethravathi & Sharavathi — mainly fibers & fragments — enter the food chain via <em>bioaccumulation</em> 
+                    <span class="source-badge">IISc Study, 2021</span>.
+                </li>
+                <li class="bg-[#183952] p-4 rounded-lg animate-on-scroll">
+                    Nutrient runoff (nitrogen, phosphorus) causes algal blooms and oxygen depletion — classic <em>eutrophication</em>.
+                </li>
+            </ul>
+
+            <!-- Pollution Chart -->
+            <div class="bg-[#183952] p-6 rounded-lg animate-on-scroll">
+                <h3 class="text-2xl font-bold text-center text-[#FFD166] mb-4">Major Sources of River Pollution</h3>
+                <div class="h-80">
+                    <canvas id="pollutionSourcesChart"></canvas>
                 </div>
             </div>
 
-            <div class="mt-12 animate-on-scroll">
-                <h3 class="text-2xl font-bold text-center mb-6 text-white">Ecological Domino Effect</h3>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-center">
-                    <div class="bg-[#118AB2] p-6 rounded-lg shadow-lg">
-                        <p class="text-4xl">🐠</p>
-                        <h4 class="font-bold text-xl mt-2">Freshwater Ecosystems Collapse</h4>
-                        <p class="text-gray-300 mt-1">Pollutants like agricultural runoff can cause **eutrophication**, depleting oxygen and harming endemic aquatic life.</p>
-                    </div>
-                    <div class="bg-[#118AB2] p-6 rounded-lg shadow-lg">
-                        <p class="text-4xl">🌊</p>
-                        <h4 class="font-bold text-xl mt-2">Increased Flood & Landslide Risk</h4>
-                        <p class="text-gray-300 mt-1">Deforestation and illegal mining weaken the terrain, making it more vulnerable to natural disasters during heavy rainfall.</p>
-                    </div>
-                    <div class="bg-[#118AB2] p-6 rounded-lg shadow-lg sm:col-span-2 lg:col-span-1">
-                        <p class="text-4xl">🌳</p>
-                        <h4 class="font-bold text-xl mt-2">Critical Biodiversity Loss</h4>
-                        <p class="text-gray-300 mt-1">The cumulative impact of pollution and habitat loss endangers the region's unique plants and animals, many of which are found nowhere else on Earth.</p>
-                    </div>
-                </div>
-            </div>
+            <!-- Ecological Impact -->
+            <ul class="space-y-4 max-w-3xl mx-auto">
+                <li class="bg-[#06D6A0]/20 p-4 rounded-lg animate-on-scroll">
+                    Oxygen depletion kills fish and disrupts aquatic ecosystems.
+                </li>
+                <li class="bg-[#FF6B6B]/20 p-4 rounded-lg animate-on-scroll">
+                    Mining & deforestation increase landslide and flood risk.
+                </li>
+                <li class="bg-[#118AB2]/20 p-4 rounded-lg animate-on-scroll">
+                    Endemic species are at risk — once gone, they’re gone forever.
+                </li>
+            </ul>
         </section>
 
         <hr class="border-white/20 my-12">
-        
-        <section id="solutions" class="py-12 animate-on-scroll">
-            <h2 class="text-3xl md:text-5xl font-bold text-center mb-6 text-white">Pathways to Resilience</h2>
-            <p class="mt-4 max-w-3xl mx-auto text-center text-lg text-gray-400">Addressing these crises requires targeted, scientifically-backed solutions tailored to each region's unique challenges.</p>
-            
-            <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-[#183952] rounded-lg shadow-xl p-6">
-                    <details class="text-left cursor-pointer">
-                        <summary class="font-bold text-xl text-[#FFD166]">Solutions for Ladakh's Glaciers</summary>
-                        <ul class="mt-4 text-gray-400 list-disc list-inside">
-                            <li><strong class="text-white">Black Carbon Mitigation:</strong> Implementing stricter emission standards for vehicles and discouraging biomass burning to reduce black carbon deposits on glaciers.</li>
-                            <li><strong class="text-white">Early Warning Systems:</strong> Developing and deploying robust monitoring systems for proglacial lakes to provide early warnings for GLOFs.</li>
-                            <li><strong class="text-white">Artificial Glaciers:</strong> Supporting local initiatives, like those pioneered by Sonam Wangchuk, that create "Ice Stupas" to store winter meltwater for spring and summer use.</li>
-                        </ul>
-                    </details>
+
+        <!-- SOLUTIONS -->
+        <section id="solutions" class="py-12 space-y-8 animate-on-scroll">
+            <h2 class="text-3xl md:text-5xl font-bold text-center">Pathways to Resilience</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-[#183952] p-6 rounded-lg">
+                    <h3 class="text-xl font-bold text-[#FFD166] mb-4">For Ladakh's Glaciers</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-300">
+                        <li>Reduce black carbon: stricter vehicle emission laws.</li>
+                        <li>Install early warning systems for GLOFs.</li>
+                        <li>Support ice stupa projects to store winter meltwater.</li>
+                    </ul>
                 </div>
-                <div class="bg-[#183952] rounded-lg shadow-xl p-6">
-                    <details class="text-left cursor-pointer">
-                        <summary class="font-bold text-xl text-[#06D6A0]">Solutions for Karnataka's Rivers</summary>
-                        <ul class="mt-4 text-gray-400 list-disc list-inside">
-                            <li><strong class="text-white">Improved Waste Management:</strong> Investing in modern sewage treatment plants and implementing effective plastic waste collection programs, especially in pilgrimage and tourism sites.</li>
-                            <li><strong class="text-white">Sustainable Agriculture:</strong> Promoting organic farming and controlled use of fertilizers and pesticides to prevent harmful agricultural runoff.</li>
-                            <li><strong class="text-white">Reforestation and Conservation:</strong> Enforcing strict regulations against deforestation and illegal mining to protect the fragile river ecosystems and prevent landslides.</li>
-                        </ul>
-                    </details>
+                <div class="bg-[#183952] p-6 rounded-lg">
+                    <h3 class="text-xl font-bold text-[#06D6A0] mb-4">For Karnataka's Rivers</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-300">
+                        <li>Build modern sewage treatment plants.</li>
+                        <li>Promote sustainable, low-runoff agriculture.</li>
+                        <li>Enforce bans on illegal mining & deforestation.</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
     </main>
 
+    <!-- TEAM -->
     <section id="our-team" class="container mx-auto px-4 md:px-8 py-12">
         <hr class="border-white/20 my-12">
-        <div class="text-center mb-12 animate-on-scroll">
-            <h2 class="text-3xl md:text-5xl font-bold text-white">Our Team</h2>
-            <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-400">Dedicated individuals working to highlight these critical environmental issues.</p>
+        <div class="text-center mb-8 animate-on-scroll">
+            <h2 class="text-3xl md:text-5xl font-bold">Our Team</h2>
         </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="bg-[#118AB2] rounded-lg shadow-xl p-6 text-center animate-on-scroll">
-                <h3 class="text-2xl font-bold text-[#FFD166] mb-4">Developers</h3>
-                <ul class="list-none p-0 m-0 text-white">
-                    <li class="mb-2">Rajat</li>
-                    <li>Nachiketh</li>
-                </ul>
-            </div>
-            <div class="bg-[#118AB2] rounded-lg shadow-xl p-6 text-center animate-on-scroll">
-                <h3 class="text-2xl font-bold text-[#06D6A0] mb-4">Ghats Team</h3>
-                <ul class="list-none p-0 m-0 text-white">
-                    <li class="mb-2">Dhruv</li>
-                    <li>Shivam</li>
-                </ul>
-            </div>
-            <div class="bg-[#118AB2] rounded-lg shadow-xl p-6 text-center animate-on-scroll">
-                <h3 class="text-2xl font-bold text-[#FF6B6B] mb-4">Glaciers Team</h3>
-                <ul class="list-none p-0 m-0 text-white">
-                    <li class="mb-2">Priyesh</li>
-                    <li>Vinay</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="text-center mt-12 animate-on-scroll">
-            <p class="text-gray-400 text-lg">Proudly representing:</p>
-            <p class="text-white text-2xl font-bold mt-2">Pruthvi House Grade 9 Group 2</p>
-        </div>
+        <p class="text-center text-xl font-bold text-white">Pruthvi House Grade 9 — Group 2</p>
     </section>
 
-    <footer class="text-center py-8 mt-12 px-4 animate-on-scroll">
-        <p class="text-gray-400">These interconnected crises highlight the urgent need for comprehensive environmental policies and sustainable practices to protect India's vital natural resources.</p>
-        <p class="text-gray-500 text-sm mt-2">Infographic created based on the report "Glacier Melting in Ladakh and Pollution in the Western Ghats of Karnataka".</p>
+    <!-- FOOTER -->
+    <footer class="text-center py-8 animate-on-scroll">
+        <p class="text-gray-400">
+            These crises demand science-driven solutions — not tomorrow, but today.
+        </p>
     </footer>
 
     <script>
-        // Utility function to handle line wrapping for labels in charts
-        const wrapLabel = (label) => {
-            const maxLength = 16;
-            if (label.length <= maxLength) {
-                return label;
-            }
-            const words = label.split(' ');
-            const lines = [];
-            let currentLine = '';
-            for (const word of words) {
-                if ((currentLine + ' ' + word).trim().length > maxLength) {
-                    lines.push(currentLine.trim());
-                    currentLine = word;
-                } else {
-                    currentLine = (currentLine + ' ' + word).trim();
-                }
-            }
-            if (currentLine) {
-                lines.push(currentLine.trim());
-            }
-            return lines;
-        };
-        
-        // Callback function for chart tooltips
-        const tooltipTitleCallback = (tooltipItems) => {
-            const item = tooltipItems[0];
-            let label = item.chart.data.labels[item.dataIndex];
-            if (Array.isArray(label)) {
-                return label.join(' ');
-            }
-            return label;
-        };
-
-        const sharedChartOptions = {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    labels: {
-                        color: '#E5E7EB'
-                    }
-                },
-                tooltip: {
-                    callbacks: {
-                        title: tooltipTitleCallback
-                    }
-                }
-            },
-            scales: {
-                y: {
-                    ticks: { color: '#9CA3AF' },
-                    grid: { color: 'rgba(255, 255, 255, 0.1)' }
-                },
-                x: {
-                    ticks: { color: '#9CA3AF' },
-                    grid: { color: 'rgba(255, 255, 255, 0.1)' }
-                }
-            }
-        };
-
-        // Function to initialize the charts
-        const initCharts = () => {
-            if (document.getElementById('glacierRetreatChart')) {
-                const glacierRetreatCtx = document.getElementById('glacierRetreatChart').getContext('2d');
-                new Chart(glacierRetreatCtx, {
-                    type: 'line',
-                    data: {
-                        labels: ['1971-1999', '1999-2015', '2015-2021'],
-                        datasets: [{
-                            label: 'Avg. Retreat Rate (m/year)',
-                            data: [2, 12, 20],
-                            borderColor: '#FF6B6B',
-                            backgroundColor: 'rgba(255, 107, 107, 0.2)',
-                            fill: true,
-                            tension: 0.4
-                        }]
-                    },
-                    options: sharedChartOptions
-                });
-            }
-
-            if (document.getElementById('waterDependencyChart')) {
-                const waterDependencyCtx = document.getElementById('waterDependencyChart').getContext('2d');
-                new Chart(waterDependencyCtx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: ['Glacial Meltwater', 'Other Sources'],
-                        datasets: [{
-                            label: 'Water Source Dependency',
-                            data: [85, 15],
-                            backgroundColor: ['#118AB2', '#06D6A0'],
-                            borderColor: '#0A1929',
-                            hoverOffset: 4
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                position: 'top',
-                                labels: { color: '#E5E7EB' }
-                            },
-                            tooltip: {
-                                callbacks: {
-                                    title: tooltipTitleCallback
-                                }
-                            }
-                        }
-                    }
-                });
-            }
-
-            if (document.getElementById('pollutionSourcesChart')) {
-                const pollutionSourcesCtx = document.getElementById('pollutionSourcesChart').getContext('2d');
-                new Chart(pollutionSourcesCtx, {
-                    type: 'bar',
-                    data: {
-                        labels: [
-                            'Untreated Sewage & Domestic Waste',
-                            'Unregulated Tourism & Pilgrimage',
-                            'Industrial & Agricultural Runoff',
-                            'Mining & Quarrying'
-                        ].map(wrapLabel),
-                        datasets: [{
-                            label: 'Relative Impact Score',
-                            data: [85, 70, 55, 40],
-                            backgroundColor: ['#FF6B6B', '#FFD166', '#06D6A0', '#118AB2'],
-                            borderColor: '#0A1929',
-                            borderWidth: 2
-                        }]
-                    },
-                    options: {
-                        ...sharedChartOptions,
-                        indexAxis: 'y',
-                        scales: {
-                            x: {
-                                ticks: { color: '#9CA3AF' },
-                                grid: { color: 'rgba(255, 255, 255, 0.1)' }
-                            },
-                            y: {
-                                ticks: { color: '#E5E7EB' },
-                                grid: { display: false }
-                            }
-                        },
-                        plugins: {
-                            legend: {
-                                display: false
-                            },
-                            tooltip: {
-                                callbacks: {
-                                    title: tooltipTitleCallback
-                                }
-                            }
-                        }
-                    }
-                });
-            }
-        };
-
-        // Intersection Observer for scroll animations
+        // Scroll animation observer with stagger
         document.addEventListener('DOMContentLoaded', () => {
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.1
-            };
-
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
-                        
-                        // Special handling for charts to animate only on scroll
-                        const chartCanvas = entry.target.querySelector('canvas');
-                        if (chartCanvas && !chartCanvas.hasAttribute('data-chart-initialized')) {
-                            chartCanvas.setAttribute('data-chart-initialized', 'true');
-                            initCharts();
-                        }
-                        
                         observer.unobserve(entry.target);
                     }
                 });
-            }, observerOptions);
+            }, { threshold: 0.1 });
 
-            document.querySelectorAll('.animate-on-scroll').forEach(section => {
-                observer.observe(section);
+            document.querySelectorAll('.animate-on-scroll').forEach((el, i) => {
+                el.style.transitionDelay = `${i * 100}ms`;
+                observer.observe(el);
             });
+        });
+
+        // Chart.js setup
+        const sharedChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { labels: { color: '#E5E7EB' } } },
+            scales: {
+                y: { ticks: { color: '#9CA3AF' }, grid: { color: 'rgba(255, 255, 255, 0.1)' } },
+                x: { ticks: { color: '#9CA3AF' }, grid: { color: 'rgba(255, 255, 255, 0.1)' } }
+            }
+        };
+
+        new Chart(document.getElementById('glacierRetreatChart'), {
+            type: 'line',
+            data: {
+                labels: ['1971–1999', '1999–2015', '2015–2021'],
+                datasets: [{
+                    label: 'Retreat Rate (m/year)',
+                    data: [2, 12, 20],
+                    borderColor: '#FF6B6B',
+                    backgroundColor: 'rgba(255, 107, 107, 0.2)',
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: sharedChartOptions
+        });
+
+        new Chart(document.getElementById('waterDependencyChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Glacial Meltwater', 'Other Sources'],
+                datasets: [{
+                    data: [85, 15],
+                    backgroundColor: ['#118AB2', '#06D6A0'],
+                    borderColor: '#0A1929',
+                    hoverOffset: 4
+                }]
+            }
+        });
+
+        new Chart(document.getElementById('pollutionSourcesChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Sewage & Waste', 'Tourism', 'Agricultural Runoff', 'Mining'],
+                datasets: [{
+                    data: [85, 70, 55, 40],
+                    backgroundColor: ['#FF6B6B', '#FFD166', '#06D6A0', '#118AB2'],
+                    borderColor: '#0A1929',
+                    borderWidth: 2
+                }]
+            },
+            options: { ...sharedChartOptions, indexAxis: 'y' }
         });
     </script>
 </body>
