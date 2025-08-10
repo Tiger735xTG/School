@@ -86,6 +86,8 @@ canvas{display:block;height:320px !important;width:100% !important}
 .team-card.ghats::before{background:linear-gradient(90deg, var(--blue), var(--teamPurple))}
 .team-card.glacier::before{background:linear-gradient(90deg, var(--teamGreen), var(--teamOrange))}
 .team-card.dev::before{background:linear-gradient(90deg, var(--teamPink), var(--violet))}
+.team-card.teacher::before{background:linear-gradient(90deg, var(--cyan), var(--violet))}
+.team-card.helpers::before{background:linear-gradient(90deg, var(--coral), var(--gold))}
 .team-icon-container{position:relative;display:inline-block;margin-bottom:15px}
 .team-icon-bg{position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);width:120px;height:120px;border-radius:50%;opacity:0.2;z-index:1;animation: rotate 20s linear infinite}
 @keyframes rotate {
@@ -96,6 +98,8 @@ canvas{display:block;height:320px !important;width:100% !important}
 .team-card.ghats .team-icon-bg{background:conic-gradient(var(--blue), var(--teamPurple), var(--cyan), var(--blue))}
 .team-card.glacier .team-icon-bg{background:conic-gradient(var(--teamGreen), var(--teamOrange), var(--cyan), var(--teamGreen))}
 .team-card.dev .team-icon-bg{background:conic-gradient(var(--teamPink), var(--violet), var(--magenta), var(--teamPink))}
+.team-card.teacher .team-icon-bg{background:conic-gradient(var(--cyan), var(--violet), var(--magenta), var(--cyan))}
+.team-card.helpers .team-icon-bg{background:conic-gradient(var(--coral), var(--gold), var(--orange), var(--coral))}
 .team-icon{font-size:4rem;margin-bottom:15px;display:block;position:relative;z-index:2;animation: float 3s ease-in-out infinite}
 @keyframes float {
   0%, 100% {transform: translateY(0)}
@@ -105,6 +109,8 @@ canvas{display:block;height:320px !important;width:100% !important}
 .team-card.ghats .team-icon{color:var(--cyan);text-shadow:0 0 20px rgba(0,255,255,0.8), 0 0 40px rgba(138,43,226,0.4)}
 .team-card.glacier .team-icon{color:var(--teamGreen);text-shadow:0 0 20px rgba(6,214,160,0.8), 0 0 40px rgba(255,140,0,0.4)}
 .team-card.dev .team-icon{color:var(--teamPink);text-shadow:0 0 20px rgba(255,105,180,0.8), 0 0 40px rgba(148,0,211,0.4)}
+.team-card.teacher .team-icon{color:var(--cyan);text-shadow:0 0 20px rgba(0,255,255,0.8), 0 0 40px rgba(148,0,211,0.4)}
+.team-card.helpers .team-icon{color:var(--coral);text-shadow:0 0 20px rgba(255,127,80,0.8), 0 0 40px rgba(255,215,0,0.4)}
 .team-name{font-size:1.2rem;font-weight:700;margin:0 0 5px;color:#fff;background:linear-gradient(90deg, #fff, var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .team-role{font-size:0.9rem;color:var(--muted);margin:0 0 15px}
 .team-members{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
@@ -114,6 +120,8 @@ canvas{display:block;height:320px !important;width:100% !important}
 .team-card.ghats .team-member{background:linear-gradient(135deg, rgba(0,255,255,0.2), rgba(138,43,226,0.2))}
 .team-card.glacier .team-member{background:linear-gradient(135deg, rgba(6,214,160,0.2), rgba(255,140,0,0.2))}
 .team-card.dev .team-member{background:linear-gradient(135deg, rgba(255,105,180,0.2), rgba(148,0,211,0.2))}
+.team-card.teacher .team-member{background:linear-gradient(135deg, rgba(0,255,255,0.2), rgba(148,0,211,0.2))}
+.team-card.helpers .team-member{background:linear-gradient(135deg, rgba(255,127,80,0.2), rgba(255,215,0,0.2))}
 .team-decoration{position:absolute;bottom:10px;right:10px;font-size:1.5rem;opacity:0.3;animation: sparkle 2s ease-in-out infinite}
 @keyframes sparkle {
   0%, 100% {opacity: 0.3; transform: scale(1)}
@@ -123,6 +131,8 @@ canvas{display:block;height:320px !important;width:100% !important}
 .team-card.ghats .team-decoration{color:var(--cyan)}
 .team-card.glacier .team-decoration{color:var(--teamGreen)}
 .team-card.dev .team-decoration{color:var(--teamPink)}
+.team-card.teacher .team-decoration{color:var(--cyan)}
+.team-card.helpers .team-decoration{color:var(--coral)}
 .team-footer{text-align:center;margin-top:30px;color:#cfe6f8;font-size:1.1rem;position:relative;z-index:1}
 .team-footer::before{content:"";display:block;width:60px;height:3px;background:linear-gradient(90deg, var(--blue), var(--cyan), var(--teamGreen), var(--teamPink));margin:0 auto 15px;border-radius:3px}
 .team-footer-icons{display:flex;justify-content:center;gap:15px;margin-top:15px}
@@ -132,6 +142,8 @@ canvas{display:block;height:320px !important;width:100% !important}
 .team-footer-icon:nth-child(2){color:var(--cyan);text-shadow:0 0 10px rgba(0,255,255,0.5)}
 .team-footer-icon:nth-child(3){color:var(--teamGreen);text-shadow:0 0 10px rgba(6,214,160,0.5)}
 .team-footer-icon:nth-child(4){color:var(--teamPink);text-shadow:0 0 10px rgba(255,105,180,0.5)}
+.team-footer-icon:nth-child(5){color:var(--cyan);text-shadow:0 0 10px rgba(0,255,255,0.5)}
+.team-footer-icon:nth-child(6){color:var(--coral);text-shadow:0 0 10px rgba(255,127,80,0.5)}
 /* fact panels */
 .fact-panel{margin-top:10px;color:var(--muted);padding:12px;background:linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));border-radius:8px;border-left:3px solid var(--accent);box-shadow:0 4px 12px rgba(0,0,0,0.2)}
 /* timeline */
@@ -675,15 +687,28 @@ canvas{display:block;height:320px !important;width:100% !important}
           <div class="subtitle">Group 2 — Pruthvi House</div>
         </div>
         <div class="team-grid">
+          <div class="team-card teacher">
+            <div class="team-icon-container">
+              <div class="team-icon-bg"></div>
+              <i class="fas fa-chalkboard-teacher team-icon"></i>
+            </div>
+            <h3 class="team-name">Teacher In Charge</h3>
+            <p class="team-role">Project Guidance</p>
+            <div class="team-members">
+              <span class="team-member">Souvik Datta</span>
+            </div>
+            <i class="fas fa-graduation-cap team-decoration"></i>
+          </div>
           <div class="team-card leader">
             <div class="team-icon-container">
               <div class="team-icon-bg"></div>
               <i class="fas fa-crown team-icon"></i>
             </div>
-            <h3 class="team-name">Group Leader</h3>
+            <h3 class="team-name">Group Leaders</h3>
             <p class="team-role">Project Coordination</p>
             <div class="team-members">
               <span class="team-member">Vinay</span>
+              <span class="team-member">Rajat</span>
             </div>
             <i class="fas fa-star team-decoration"></i>
           </div>
@@ -709,7 +734,7 @@ canvas{display:block;height:320px !important;width:100% !important}
             <p class="team-role">Cryosphere Research</p>
             <div class="team-members">
               <span class="team-member">Priyesh</span>
-              <span class="team-member">Rajataudrey</span>
+              <span class="team-member">Vinay</span>
             </div>
             <i class="fas fa-snowflake team-decoration"></i>
           </div>
@@ -726,14 +751,28 @@ canvas{display:block;height:320px !important;width:100% !important}
             </div>
             <i class="fas fa-laptop-code team-decoration"></i>
           </div>
+          <div class="team-card helpers">
+            <div class="team-icon-container">
+              <div class="team-icon-bg"></div>
+              <i class="fas fa-hands-helping team-icon"></i>
+            </div>
+            <h3 class="team-name">Helpers</h3>
+            <p class="team-role">Research Assistance</p>
+            <div class="team-members">
+              <span class="team-member">Rajatadris</span>
+            </div>
+            <i class="fas fa-hands team-decoration"></i>
+          </div>
         </div>
         <div class="team-footer">
           <strong>Pruthvi House — Group 2</strong>
           <div class="team-footer-icons">
+            <i class="fas fa-chalkboard-teacher team-footer-icon"></i>
             <i class="fas fa-crown team-footer-icon"></i>
             <i class="fas fa-water team-footer-icon"></i>
             <i class="fas fa-mountain team-footer-icon"></i>
             <i class="fas fa-code team-footer-icon"></i>
+            <i class="fas fa-hands-helping team-footer-icon"></i>
           </div>
         </div>
       </section>
@@ -1000,4 +1039,3 @@ window.addEventListener('resize', ()=>{
 </script>
 </body>
 </html>
-
