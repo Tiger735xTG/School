@@ -78,15 +78,15 @@ canvas{display:block;height:320px !important;width:100% !important}
   0%, 100% {transform: scale(1); opacity: 0.5}
   50% {transform: scale(1.1); opacity: 0.8}
 }
-.team-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));gap:20px;margin-top:24px;position:relative;z-index:1}
+.team-grid{display:grid;grid-template-columns:repeat(3, 1fr);gap:20px;margin-top:24px;position:relative;z-index:1}
 .team-card{background:linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));backdrop-filter:blur(10px);padding:20px;border-radius:16px;text-align:center;border:1px solid rgba(255,255,255,0.05);transition:all 0.3s ease;position:relative;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,0.3)}
 .team-card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg, var(--blue), var(--teamGreen))}
 .team-card:hover{transform:translateY(-8px) scale(1.02);box-shadow:0 15px 30px rgba(0,0,0,0.4), 0 0 30px rgba(17,138,178,0.3)}
+.team-card.teacher::before{background:linear-gradient(90deg, var(--cyan), var(--violet))}
 .team-card.leader::before{background:linear-gradient(90deg, var(--gold), var(--danger))}
+.team-card.dev::before{background:linear-gradient(90deg, var(--teamPink), var(--violet))}
 .team-card.ghats::before{background:linear-gradient(90deg, var(--blue), var(--teamPurple))}
 .team-card.glacier::before{background:linear-gradient(90deg, var(--teamGreen), var(--teamOrange))}
-.team-card.dev::before{background:linear-gradient(90deg, var(--teamPink), var(--violet))}
-.team-card.teacher::before{background:linear-gradient(90deg, var(--cyan), var(--violet))}
 .team-card.helpers::before{background:linear-gradient(90deg, var(--coral), var(--gold))}
 .team-icon-container{position:relative;display:inline-block;margin-bottom:15px}
 .team-icon-bg{position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);width:120px;height:120px;border-radius:50%;opacity:0.2;z-index:1;animation: rotate 20s linear infinite}
@@ -94,55 +94,55 @@ canvas{display:block;height:320px !important;width:100% !important}
   from {transform: translate(-50%, -50%) rotate(0deg)}
   to {transform: translate(-50%, -50%) rotate(360deg)}
 }
+.team-card.teacher .team-icon-bg{background:conic-gradient(var(--cyan), var(--violet), var(--magenta), var(--cyan))}
 .team-card.leader .team-icon-bg{background:conic-gradient(var(--gold), var(--danger), var(--gold))}
+.team-card.dev .team-icon-bg{background:conic-gradient(var(--teamPink), var(--violet), var(--magenta), var(--teamPink))}
 .team-card.ghats .team-icon-bg{background:conic-gradient(var(--blue), var(--teamPurple), var(--cyan), var(--blue))}
 .team-card.glacier .team-icon-bg{background:conic-gradient(var(--teamGreen), var(--teamOrange), var(--cyan), var(--teamGreen))}
-.team-card.dev .team-icon-bg{background:conic-gradient(var(--teamPink), var(--violet), var(--magenta), var(--teamPink))}
-.team-card.teacher .team-icon-bg{background:conic-gradient(var(--cyan), var(--violet), var(--magenta), var(--cyan))}
 .team-card.helpers .team-icon-bg{background:conic-gradient(var(--coral), var(--gold), var(--orange), var(--coral))}
 .team-icon{font-size:4rem;margin-bottom:15px;display:block;position:relative;z-index:2;animation: float 3s ease-in-out infinite}
 @keyframes float {
   0%, 100% {transform: translateY(0)}
   50% {transform: translateY(-10px)}
 }
+.team-card.teacher .team-icon{color:var(--cyan);text-shadow:0 0 20px rgba(0,255,255,0.8), 0 0 40px rgba(148,0,211,0.4)}
 .team-card.leader .team-icon{color:var(--gold);text-shadow:0 0 20px rgba(255,215,0,0.8), 0 0 40px rgba(255,107,107,0.4)}
+.team-card.dev .team-icon{color:var(--teamPink);text-shadow:0 0 20px rgba(255,105,180,0.8), 0 0 40px rgba(148,0,211,0.4)}
 .team-card.ghats .team-icon{color:var(--cyan);text-shadow:0 0 20px rgba(0,255,255,0.8), 0 0 40px rgba(138,43,226,0.4)}
 .team-card.glacier .team-icon{color:var(--teamGreen);text-shadow:0 0 20px rgba(6,214,160,0.8), 0 0 40px rgba(255,140,0,0.4)}
-.team-card.dev .team-icon{color:var(--teamPink);text-shadow:0 0 20px rgba(255,105,180,0.8), 0 0 40px rgba(148,0,211,0.4)}
-.team-card.teacher .team-icon{color:var(--cyan);text-shadow:0 0 20px rgba(0,255,255,0.8), 0 0 40px rgba(148,0,211,0.4)}
 .team-card.helpers .team-icon{color:var(--coral);text-shadow:0 0 20px rgba(255,127,80,0.8), 0 0 40px rgba(255,215,0,0.4)}
 .team-name{font-size:1.2rem;font-weight:700;margin:0 0 5px;color:#fff;background:linear-gradient(90deg, #fff, var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .team-role{font-size:0.9rem;color:var(--muted);margin:0 0 15px}
 .team-members{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
 .team-member{background:rgba(255,255,255,0.1);padding:5px 12px;border-radius:20px;font-size:0.9rem;color:#eaf6ff;transition:all 0.3s}
 .team-member:hover{transform:scale(1.05);box-shadow:0 0 10px rgba(255,255,255,0.3)}
+.team-card.teacher .team-member{background:linear-gradient(135deg, rgba(0,255,255,0.2), rgba(148,0,211,0.2))}
 .team-card.leader .team-member{background:linear-gradient(135deg, rgba(255,215,0,0.2), rgba(255,107,107,0.2))}
+.team-card.dev .team-member{background:linear-gradient(135deg, rgba(255,105,180,0.2), rgba(148,0,211,0.2))}
 .team-card.ghats .team-member{background:linear-gradient(135deg, rgba(0,255,255,0.2), rgba(138,43,226,0.2))}
 .team-card.glacier .team-member{background:linear-gradient(135deg, rgba(6,214,160,0.2), rgba(255,140,0,0.2))}
-.team-card.dev .team-member{background:linear-gradient(135deg, rgba(255,105,180,0.2), rgba(148,0,211,0.2))}
-.team-card.teacher .team-member{background:linear-gradient(135deg, rgba(0,255,255,0.2), rgba(148,0,211,0.2))}
 .team-card.helpers .team-member{background:linear-gradient(135deg, rgba(255,127,80,0.2), rgba(255,215,0,0.2))}
 .team-decoration{position:absolute;bottom:10px;right:10px;font-size:1.5rem;opacity:0.3;animation: sparkle 2s ease-in-out infinite}
 @keyframes sparkle {
   0%, 100% {opacity: 0.3; transform: scale(1)}
   50% {opacity: 0.8; transform: scale(1.2)}
 }
+.team-card.teacher .team-decoration{color:var(--cyan)}
 .team-card.leader .team-decoration{color:var(--gold)}
+.team-card.dev .team-decoration{color:var(--teamPink)}
 .team-card.ghats .team-decoration{color:var(--cyan)}
 .team-card.glacier .team-decoration{color:var(--teamGreen)}
-.team-card.dev .team-decoration{color:var(--teamPink)}
-.team-card.teacher .team-decoration{color:var(--cyan)}
 .team-card.helpers .team-decoration{color:var(--coral)}
 .team-footer{text-align:center;margin-top:30px;color:#cfe6f8;font-size:1.1rem;position:relative;z-index:1}
-.team-footer::before{content:"";display:block;width:60px;height:3px;background:linear-gradient(90deg, var(--blue), var(--cyan), var(--teamGreen), var(--teamPink));margin:0 auto 15px;border-radius:3px}
+.team-footer::before{content:"";display:block;width:60px;height:3px;background:linear-gradient(90deg, var(--cyan), var(--gold), var(--teamPink), var(--blue), var(--teamGreen), var(--coral));margin:0 auto 15px;border-radius:3px}
 .team-footer-icons{display:flex;justify-content:center;gap:15px;margin-top:15px}
 .team-footer-icon{font-size:1.8rem;transition:all 0.3s}
 .team-footer-icon:hover{transform:scale(1.2) rotate(10deg)}
-.team-footer-icon:nth-child(1){color:var(--gold);text-shadow:0 0 10px rgba(255,215,0,0.5)}
-.team-footer-icon:nth-child(2){color:var(--cyan);text-shadow:0 0 10px rgba(0,255,255,0.5)}
-.team-footer-icon:nth-child(3){color:var(--teamGreen);text-shadow:0 0 10px rgba(6,214,160,0.5)}
-.team-footer-icon:nth-child(4){color:var(--teamPink);text-shadow:0 0 10px rgba(255,105,180,0.5)}
-.team-footer-icon:nth-child(5){color:var(--cyan);text-shadow:0 0 10px rgba(0,255,255,0.5)}
+.team-footer-icon:nth-child(1){color:var(--cyan);text-shadow:0 0 10px rgba(0,255,255,0.5)}
+.team-footer-icon:nth-child(2){color:var(--gold);text-shadow:0 0 10px rgba(255,215,0,0.5)}
+.team-footer-icon:nth-child(3){color:var(--teamPink);text-shadow:0 0 10px rgba(255,105,180,0.5)}
+.team-footer-icon:nth-child(4){color:var(--cyan);text-shadow:0 0 10px rgba(0,255,255,0.5)}
+.team-footer-icon:nth-child(5){color:var(--teamGreen);text-shadow:0 0 10px rgba(6,214,160,0.5)}
 .team-footer-icon:nth-child(6){color:var(--coral);text-shadow:0 0 10px rgba(255,127,80,0.5)}
 /* fact panels */
 .fact-panel{margin-top:10px;color:var(--muted);padding:12px;background:linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));border-radius:8px;border-left:3px solid var(--accent);box-shadow:0 4px 12px rgba(0,0,0,0.2)}
@@ -209,7 +209,7 @@ canvas{display:block;height:320px !important;width:100% !important}
 /* responsive */
 @media (max-width:980px){
   .hero-title{font-size:2rem}
-  .team-grid{grid-template-columns:repeat(auto-fit, minmax(180px, 1fr))}
+  .team-grid{grid-template-columns:repeat(2, 1fr)}
   canvas{height:260px !important}
   .hero{min-height:640px}
   .charts-grid{grid-template-columns:repeat(1,1fr)}
@@ -704,13 +704,26 @@ canvas{display:block;height:320px !important;width:100% !important}
               <div class="team-icon-bg"></div>
               <i class="fas fa-crown team-icon"></i>
             </div>
-            <h3 class="team-name">Group Leaders</h3>
+            <h3 class="team-name">Leaders</h3>
             <p class="team-role">Project Coordination</p>
             <div class="team-members">
               <span class="team-member">Vinay</span>
               <span class="team-member">Rajat</span>
             </div>
             <i class="fas fa-star team-decoration"></i>
+          </div>
+          <div class="team-card dev">
+            <div class="team-icon-container">
+              <div class="team-icon-bg"></div>
+              <i class="fas fa-code team-icon"></i>
+            </div>
+            <h3 class="team-name">Dev Team</h3>
+            <p class="team-role">Web Development</p>
+            <div class="team-members">
+              <span class="team-member">Rajat</span>
+              <span class="team-member">Nachiketh</span>
+            </div>
+            <i class="fas fa-laptop-code team-decoration"></i>
           </div>
           <div class="team-card ghats">
             <div class="team-icon-container">
@@ -738,19 +751,6 @@ canvas{display:block;height:320px !important;width:100% !important}
             </div>
             <i class="fas fa-snowflake team-decoration"></i>
           </div>
-          <div class="team-card dev">
-            <div class="team-icon-container">
-              <div class="team-icon-bg"></div>
-              <i class="fas fa-code team-icon"></i>
-            </div>
-            <h3 class="team-name">Developer Team</h3>
-            <p class="team-role">Web Development</p>
-            <div class="team-members">
-              <span class="team-member">Rajat</span>
-              <span class="team-member">Nachiketh</span>
-            </div>
-            <i class="fas fa-laptop-code team-decoration"></i>
-          </div>
           <div class="team-card helpers">
             <div class="team-icon-container">
               <div class="team-icon-bg"></div>
@@ -769,9 +769,9 @@ canvas{display:block;height:320px !important;width:100% !important}
           <div class="team-footer-icons">
             <i class="fas fa-chalkboard-teacher team-footer-icon"></i>
             <i class="fas fa-crown team-footer-icon"></i>
+            <i class="fas fa-code team-footer-icon"></i>
             <i class="fas fa-water team-footer-icon"></i>
             <i class="fas fa-mountain team-footer-icon"></i>
-            <i class="fas fa-code team-footer-icon"></i>
             <i class="fas fa-hands-helping team-footer-icon"></i>
           </div>
         </div>
